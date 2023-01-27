@@ -1,0 +1,7 @@
+{
+  "name": "ACADEMIC CATALOG SYSTEM",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
