@@ -1,0 +1,9 @@
+.banner{
+    background-image: url("../../assets/svgs/newsletter-bg.5cb53dbe3960.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 20px;
+    background-color: #4B4392;
+    height: 25vh;
+}

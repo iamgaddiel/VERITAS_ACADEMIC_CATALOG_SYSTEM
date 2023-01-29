@@ -1,0 +1,13 @@
+ion-segment{
+    /* --background: var(--tertiary) */
+}
+
+ion-segment-button{
+    --color: #555555;
+    --background-hover: var(--t-tertiary);
+    --color-checked: var(--tertiary);
+}
+
+ion-label{
+    --color: var(--tertiary);
+}

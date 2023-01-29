@@ -10,10 +10,8 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import { book, bookOutline, ellipse, home, homeOutline, newspaper, newspaperOutline, person, personAddOutline, personOutline, square, triangle } from 'ionicons/icons';
+
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -33,44 +31,112 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import './global.css'
+
+
+// import Swiper JS
+import Swiper from 'swiper';
+// import Swiper styles
+import 'swiper/css';
+
+
+// import boostrap
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// all other imports
+import { useContext } from 'react';
+import { SettingsContext, SettingsContextType } from './contexts/SettingsContext';
+import Landing from './screens/Landing';
+import Login from './screens/Login';
+import Register from './screens/Register';
+import Dashboard from './screens/Dashboard/Dashboard';
+import Materials from './screens/Materials';
+import Feed from './screens/Feed';
+import Me from './screens/Me';
+
+
+
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
-          </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
-          </Route>
-          <Route path="/tab3">
-            <Tab3 />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/tab1" />
-          </Route>
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={square} />
-            <IonLabel>Tab 3</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  </IonApp>
-);
+const App: React.FC = () => {
+  const { showTabs } = useContext(SettingsContext) as SettingsContextType
+
+
+  return (
+    <IonApp>
+      <IonReactRouter>
+
+        <Route exact path="/">
+          <Landing />
+        </Route>
+        <Route exact path="/login">
+          <Login />
+        </Route>
+        <Route exact path="/register">
+          <Register />
+        </Route>
+        <Route exact path="/dashboard">
+          <Dashboard />
+        </Route>
+        <Route exact path="/mateirals">
+          <Materials />
+        </Route>
+        <Route exact path="/feed">
+          <Feed />
+        </Route>
+        <Route exact path="/me">
+          <Me />
+        </Route>
+
+
+        {
+          showTabs && (
+            <IonTabs>
+              <IonRouterOutlet>
+                <Route exact path="/">
+                  <Landing />
+                </Route>
+                <Route exact path="/login">
+                  <Login />
+                </Route>
+                <Route exact path="/register">
+                  <Register />
+                </Route>
+                <Route exact path="/dashboard">
+                  <Dashboard />
+                </Route>
+                <Route exact path="/materials">
+                  <Materials />
+                </Route>
+                <Route exact path="/feed">
+                  <Feed />
+                </Route>
+                <Route exact path="/me">
+                  <Me />
+                </Route>
+              </IonRouterOutlet>
+
+              <IonTabBar slot="bottom">
+                <IonTabButton tab="tab1" href="/dashboard">
+                  <IonIcon icon={home} />
+                </IonTabButton>
+                <IonTabButton tab="tab2" href="/materials">
+                  <IonIcon icon={book} />
+                </IonTabButton>
+                <IonTabButton tab="tab3" href="/feed">
+                  <IonIcon icon={newspaper} />
+                </IonTabButton>
+                <IonTabButton tab="tab4" href="/me">
+                  <IonIcon icon={person} />
+                </IonTabButton>
+              </IonTabBar>
+            </IonTabs>
+          )
+        }
+      </IonReactRouter>
+    </IonApp>
+  )
+};
 
 export default App;
