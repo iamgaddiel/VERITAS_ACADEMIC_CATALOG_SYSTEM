@@ -1,4 +1,5 @@
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonItem, IonList, IonPage, IonText } from '@ionic/react'
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonIcon, IonItem, IonList, IonPage, IonText } from '@ionic/react'
+import { book } from 'ionicons/icons'
 import React from 'react'
 import HeaderTitle from '../../components/HeaderTitle'
 
@@ -9,7 +10,10 @@ const Materials = () => {
             <IonContent className='ion-padding' fullscreen>
 
                 {/* TODO: display if user is a staff */}
-                <IonButton className='fill' expand='block' shape='round'>Upload Material</IonButton>
+                <IonButton className='fill' expand='block' shape='round'>
+                    <IonIcon icon={book} slot="start"/> 
+                    Upload Material
+                </IonButton>
 
 
                 <section className="mt-5">

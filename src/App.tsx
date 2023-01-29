@@ -10,7 +10,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { book, bookOutline, ellipse, home, homeOutline, newspaper, newspaperOutline, person, personAddOutline, personOutline, square, triangle } from 'ionicons/icons';
+import { book, bookOutline, chatbubbles, ellipse, home, homeOutline, newspaper, newspaperOutline, person, personAddOutline, personOutline, square, triangle } from 'ionicons/icons';
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -53,6 +53,10 @@ import Dashboard from './screens/Dashboard/Dashboard';
 import Materials from './screens/Materials';
 import Feed from './screens/Feed';
 import Me from './screens/Me';
+import Assignments from './screens/Assignments/Assignments';
+import AssignmentDetail from './screens/AssignmentDetail';
+// import Question from './screens/Question';
+import Questions from './screens/Question/Questions';
 
 
 
@@ -88,7 +92,15 @@ const App: React.FC = () => {
         <Route exact path="/me">
           <Me />
         </Route>
-
+        <Route exact path="/assignments">
+          <Assignments />
+        </Route>
+        <Route exact path="/assignment/:id">
+          <AssignmentDetail />
+        </Route>
+        <Route exact path="/questions">
+          <Questions />
+        </Route>
 
         {
           showTabs && (
@@ -115,6 +127,15 @@ const App: React.FC = () => {
                 <Route exact path="/me">
                   <Me />
                 </Route>
+                <Route exact path="/assignments">
+                  <Assignments />
+                </Route>
+                <Route exact path="/assignment/:id">
+                  <AssignmentDetail />
+                </Route>
+                <Route exact path="/questions">
+                  <Questions />
+                </Route>
               </IonRouterOutlet>
 
               <IonTabBar slot="bottom">
@@ -125,7 +146,7 @@ const App: React.FC = () => {
                   <IonIcon icon={book} />
                 </IonTabButton>
                 <IonTabButton tab="tab3" href="/feed">
-                  <IonIcon icon={newspaper} />
+                  <IonIcon icon={chatbubbles} />
                 </IonTabButton>
                 <IonTabButton tab="tab4" href="/me">
                   <IonIcon icon={person} />

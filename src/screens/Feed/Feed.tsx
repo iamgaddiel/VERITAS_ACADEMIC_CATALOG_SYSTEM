@@ -1,10 +1,10 @@
 import { IonAvatar, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonFooter, IonIcon, IonImg, IonInput, IonItem, IonList, IonPage, IonText, IonToolbar } from '@ionic/react'
+import { send } from 'ionicons/icons'
 import React from 'react'
 import HeaderTitle from '../../components/HeaderTitle'
 
 
 import Profile from "../../assets/svgs/undraw_profile_pic_ic5t.svg"
-import { send } from 'ionicons/icons'
 
 const Feed = () => {
   return (
