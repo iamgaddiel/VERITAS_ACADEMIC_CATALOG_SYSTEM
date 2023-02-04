@@ -6,12 +6,14 @@ export type CreateUserType = {
     mat_no?: string,
     staff_id?: string
     avatar?: string
+    role?: string
+    username: string
 }
 
 export type UsereCollectionType = {
     id: string
     collectionId: string
-    collectionName:string
+    collectionName: string
     created; string
     updated: string
     username?: string

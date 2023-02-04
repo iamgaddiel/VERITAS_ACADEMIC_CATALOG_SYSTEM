@@ -7,36 +7,40 @@ import { SettingsContext, SettingsContextType } from './SettingsContext'
 
 
 
-export type AuthContextType = {
-  authenticate: (email: string, password: string) => Promise<RecordAuthResponse<Record>>
-  createUser: (data: CreateUserType) => Promise<Record>
-  logout: () => void
-}
-
-
 
 export const AuthContext = createContext<AuthContextType | null>(null)
 
 
 
+const AuthProvider: React.FC<{ children: any }> = ({ children }) => {
 
-
-function AuthProvider({ children }: { children: any }) {
 
   const { pb } = useContext(SettingsContext) as SettingsContextType
 
 
   async function authenticate(email: string, password: string) {
-    const authData = await pb.collection(USRS_COLLECTION).authWithPassword(
-      email,
-      password
-    )
-    return authData
+    try {
+      const authData = await pb.collection(USRS_COLLECTION).authWithPassword(
+        email,
+        password
+      )
+      return authData
+
+    } catch (err) {
+      return err
+    }
   }
 
   async function createUser(data: CreateUserType) {
-    const record = await pb.collection(USRS_COLLECTION).create(data)
-    return record
+    try {
+      const user = await pb.collection(USRS_COLLECTION).create(data)
+      return user
+    }
+    catch (err: any) {
+      if (err) {
+        return err
+      }
+    }
   }
 
 
@@ -71,4 +75,13 @@ function AuthProvider({ children }: { children: any }) {
   )
 }
 
+
 export default AuthProvider
+
+
+export type AuthContextType = {
+  authenticate(email: string, password: string): Promise<unknown>
+  createUser: (data: CreateUserType) => Promise<unknown>
+  logout: () => void
+}
+

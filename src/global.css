@@ -9,7 +9,7 @@
     /* --tertiary: #FE502F; */
     /* --t-tertiary: #fe512f97; */
 
-    --ion-text-color: var(--tertiary);
+    /* --ion-text-color: var(--tertiary); */
     --ion-placeholder-color: var(--tertiary);
     --ion-background-color: var(--primary);
     --ion-toolbar-background: var(--primary);
@@ -36,8 +36,7 @@
 
 ion-toolbar,
 ion-title,
-ion-label
-ion-item {
+ion-label ion-item {
     --color: var(--tertiary)
 }
 
@@ -83,9 +82,14 @@ Text Colors
 -------------------------------------------------
 */
 
-.main_color{
+.main_color {
     color: var(--tertiary) !important
 }
-.bg-transparent{
+
+.bg-transparent {
     background-color: var(--t-tertiary);
+}
+
+.bg-main {
+    background: var(--tertiary)
 }

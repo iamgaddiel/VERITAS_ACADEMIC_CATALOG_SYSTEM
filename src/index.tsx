@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import SettingsProvider from './contexts/SettingsContext';
 import AuthProvider from './contexts/AuthContext';
 import CollectionProvider from './contexts/CollectionContext';
+import StorageProvider from './contexts/StorageContext';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
@@ -13,9 +14,11 @@ root.render(
   <React.StrictMode>
     <SettingsProvider>
       <AuthProvider>
-        <CollectionProvider>
-          <App />
-        </CollectionProvider>
+        <StorageProvider>
+          <CollectionProvider>
+            <App />
+          </CollectionProvider>
+        </StorageProvider>
       </AuthProvider>
     </SettingsProvider>
   </React.StrictMode>

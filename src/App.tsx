@@ -57,6 +57,9 @@ import Assignments from './screens/Assignments/Assignments';
 import AssignmentDetail from './screens/AssignmentDetail';
 // import Question from './screens/Question';
 import Questions from './screens/Question/Questions';
+import QuestionAdd from './screens/QuestionAdd';
+import Notes from './screens/Notes';
+import Note from './screens/Note';
 
 
 
@@ -101,6 +104,15 @@ const App: React.FC = () => {
         <Route exact path="/questions">
           <Questions />
         </Route>
+        <Route exact path="/question/add">
+          <QuestionAdd />
+        </Route>
+        <Route exact path="/notes">
+          <Notes />
+        </Route>
+        <Route exact path="/note/:id">
+          <Note />
+        </Route>
 
         {
           showTabs && (
@@ -135,6 +147,15 @@ const App: React.FC = () => {
                 </Route>
                 <Route exact path="/questions">
                   <Questions />
+                </Route>
+                <Route exact path="/question/add">
+                  <QuestionAdd />
+                </Route>
+                <Route exact path="/notes">
+                  <Notes />
+                </Route>
+                <Route exact path="/note/:id">
+                  <Note />
                 </Route>
               </IonRouterOutlet>
 
