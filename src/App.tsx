@@ -60,6 +60,7 @@ import Questions from './screens/Question/Questions';
 import QuestionAdd from './screens/QuestionAdd';
 import Notes from './screens/Notes';
 import Note from './screens/Note';
+import AddAssignnment from './screens/AddAssignnment';
 
 
 
@@ -98,6 +99,9 @@ const App: React.FC = () => {
         <Route exact path="/assignments">
           <Assignments />
         </Route>
+        <Route exact path="add/assignment">
+          <AddAssignnment />
+        </Route>
         <Route exact path="/assignment/:id">
           <AssignmentDetail />
         </Route>
@@ -118,6 +122,9 @@ const App: React.FC = () => {
           showTabs && (
             <IonTabs>
               <IonRouterOutlet>
+                <Route exact path="/add/assignment">
+                  <AddAssignnment />
+                </Route>
                 <Route exact path="/">
                   <Landing />
                 </Route>

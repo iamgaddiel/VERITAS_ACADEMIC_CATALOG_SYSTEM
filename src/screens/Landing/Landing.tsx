@@ -1,10 +1,14 @@
 import { IonButton, IonContent, IonImg, IonPage } from '@ionic/react'
-import React from 'react'
+import React, { useContext } from 'react'
 
 import ReadingImg from '../../assets/svgs/undraw_reading_re_29f8.svg'
+import { AuthContext, AuthContextType } from '../../contexts/AuthContext'
 
 
 function Landing() {
+    const { } = useContext(AuthContext) as AuthContextType
+
+
     return (
         <IonPage>
             <IonContent className='ion-padding'>

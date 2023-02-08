@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react'
 import PocketBase from 'pocketbase'
 import { Storage } from '@ionic/storage';
-import Settings from '../utils/settings'
+import Settings from '../helpers/settings'
 
 
 

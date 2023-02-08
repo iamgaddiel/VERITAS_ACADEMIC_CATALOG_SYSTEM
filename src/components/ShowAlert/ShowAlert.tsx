@@ -3,13 +3,17 @@ import React from 'react'
 
 
 
-const ShowAlert= ({ isOpen, setIsOpen, message }: PropType) => {
+const ShowAlert = ({ isOpen, setIsOpen, message, fallback }: PropType) => {
     return (
         <IonAlert
             isOpen={isOpen}
             onDidDismiss={() => setIsOpen(false)}
             message={message}
-            buttons={['Ok']}
+            buttons={[{
+                text: 'Ok',
+                handler: () => fallback!()
+            }]}
+            mode="ios"
         />
     )
 }
@@ -18,7 +22,8 @@ const ShowAlert= ({ isOpen, setIsOpen, message }: PropType) => {
 type PropType = {
     isOpen: boolean
     message: string
-    setIsOpen:  (value: React.SetStateAction<boolean>) => void | void
+    setIsOpen: (value: React.SetStateAction<boolean>) => void | void
+    fallback?: () => void
 }
 
 

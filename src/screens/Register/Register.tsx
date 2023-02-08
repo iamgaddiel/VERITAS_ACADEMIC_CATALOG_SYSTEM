@@ -9,9 +9,9 @@ import Loader from '../../components/Loader';
 import ShowAlert from '../../components/ShowAlert';
 import { useHistory } from 'react-router';
 import { StorageContext, StorageContextType } from '../../contexts/StorageContext';
-import { USER } from '../../utils/keys';
+import { USER } from '../../helpers/keys';
 import { pencil } from 'ionicons/icons';
-import { getRandomString } from '../../utils/utils';
+import { getRandomString } from '../../helpers/utils';
 
 
 

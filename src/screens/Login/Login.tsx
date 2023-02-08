@@ -7,8 +7,8 @@ import { useHistory } from 'react-router'
 import LoginImage from '../../assets/svgs/undraw_my_app_re_gxtj.svg'
 import { AuthContext, AuthContextType } from '../../contexts/AuthContext'
 import { StorageContext, StorageContextType } from '../../contexts/StorageContext'
-import { USER } from '../../utils/keys'
-import Settings from '../../utils/settings'
+import { USER } from '../../helpers/keys'
+import Settings from '../../helpers/settings'
 import './Login.css'
 
 
@@ -21,7 +21,7 @@ import './Login.css'
 // import { useForm, SubmitHandler } from "react-hook-form";
 
 function Login() {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
+    const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
     const { saveData } = useContext(StorageContext) as StorageContextType
     const { authenticate, logout } = useContext(AuthContext) as AuthContextType
     const history = useHistory()
@@ -31,7 +31,8 @@ function Login() {
     const [openToast, setOpenToast] = useState(false)
     const [loading, setLoading] = useState(false)
 
-    // logout()
+    logout()
+
 
     const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
         setLoading(true)
@@ -40,17 +41,17 @@ function Login() {
             console.log("🚀 ~ file: Login.tsx:35 ~ constonSubmit:SubmitHandler<Inputs>= ~ res", res)
 
 
-            if (pb.authStore.isValid) {
-                console.log(pb.authStore.token, '<---- new user')
-                saveData(USER, res)
-                setLoading(false)
-                history.push('/dashboard')
+            if (!pb.authStore.isValid) {
+                displayFormError(res.data.message)
                 return
             }
+            
+            saveData(USER, res)
+            setLoading(false)
+            history.push('/dashboard')
 
-            displayFormError(res.data.message)
-
-        } catch (err) {
+        } 
+        catch (err) {
             console.log(err, '<-- New Error')
         }
     }

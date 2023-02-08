@@ -10,9 +10,11 @@ export type CreateUserType = {
     username: string
 }
 
-export type UsereCollectionType = {
+export type UserCollectionType = {
+    staff_id?: string
     id: string
     collectionId: string
+    role?: string
     collectionName: string
     created; string
     updated: string
@@ -23,4 +25,9 @@ export type UsereCollectionType = {
     name: string
     avatar: string
     mat_no: string
+}
+
+interface StoredUser {
+    record: UserCollectionType
+    token: string
 }

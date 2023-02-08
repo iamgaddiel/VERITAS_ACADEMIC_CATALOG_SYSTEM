@@ -1,5 +1,5 @@
 import { createContext } from "react"
-import Settings from "../utils/settings"
+import Settings from "../helpers/settings"
 
 
 
@@ -8,7 +8,7 @@ export const StorageContext = createContext<StorageContextType | null>(null)
 
 
 
-const StorageProvider: React.FC<{children: any}> = ({ children }) => {
+const StorageProvider: React.FC<{ children: any }> = ({ children }) => {
 
     const { storage } = Settings()
 
@@ -31,11 +31,22 @@ const StorageProvider: React.FC<{children: any}> = ({ children }) => {
     }
 
 
+
+    async function getSaveData(key: string) {
+        try {
+            return await storage.get(key)
+        }
+        catch (err) {
+            if (err) return err
+        }
+    }
+
+
     async function clearData(key: string) {
         await storage.remove(key)
     }
 
-    async function clearAll(){
+    async function clearAll() {
         await storage.clear()
     }
 
@@ -46,7 +57,8 @@ const StorageProvider: React.FC<{children: any}> = ({ children }) => {
         <StorageContext.Provider value={{
             saveData,
             clearData,
-            clearAll
+            clearAll,
+            getSaveData
         }}>
             {children}
         </StorageContext.Provider>
@@ -55,8 +67,9 @@ const StorageProvider: React.FC<{children: any}> = ({ children }) => {
 
 export type StorageContextType = {
     saveData(key: string, data: any): Promise<any>
-    clearData: (key: string) =>  Promise<void>
+    clearData: (key: string) => Promise<void>
     clearAll: () => Promise<void>
+    getSaveData(key: string): Promise<any>
 }
 
 export default StorageProvider

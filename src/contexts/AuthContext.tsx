@@ -1,8 +1,9 @@
 import { Record, RecordAuthResponse } from 'pocketbase'
-import React, { createContext, useContext } from 'react'
-import { CreateUserType } from '../@types/users'
-import { USRS_COLLECTION } from '../utils/keys'
+import React, { createContext, useContext, useEffect, useState } from 'react'
+import { CreateUserType, StoredUser, UserCollectionType } from '../@types/users'
+import { USER, USRS_COLLECTION } from '../helpers/keys'
 import { SettingsContext, SettingsContextType } from './SettingsContext'
+import { StorageContext, StorageContextType } from './StorageContext'
 
 
 
@@ -12,10 +13,11 @@ export const AuthContext = createContext<AuthContextType | null>(null)
 
 
 
-const AuthProvider: React.FC<{ children: any }> = ({ children }) => {
+const AuthProvider = ({ children }:{ children: any}) => {
 
 
   const { pb } = useContext(SettingsContext) as SettingsContextType
+  const { getSaveData } = useContext(StorageContext) as StorageContextType
 
 
   async function authenticate(email: string, password: string) {
@@ -44,6 +46,12 @@ const AuthProvider: React.FC<{ children: any }> = ({ children }) => {
   }
 
 
+  async function getStoredUser () {
+    const user: StoredUser = await getSaveData(USER)
+    return user
+  }
+
+
   function logout() {
     pb.authStore.clear()
   }
@@ -69,6 +77,7 @@ const AuthProvider: React.FC<{ children: any }> = ({ children }) => {
       authenticate,
       createUser,
       logout,
+      getStoredUser
     }}>
       {children}
     </AuthContext.Provider>
@@ -83,5 +92,6 @@ export type AuthContextType = {
   authenticate(email: string, password: string): Promise<unknown>
   createUser: (data: CreateUserType) => Promise<unknown>
   logout: () => void
+  getStoredUser: () => Promise<StoredUser>
 }
 

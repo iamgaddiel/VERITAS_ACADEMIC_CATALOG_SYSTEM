@@ -13,13 +13,13 @@ const root = createRoot(container!);
 root.render(
   <React.StrictMode>
     <SettingsProvider>
-      <AuthProvider>
-        <StorageProvider>
+      <StorageProvider>
+        <AuthProvider>
           <CollectionProvider>
             <App />
           </CollectionProvider>
-        </StorageProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </StorageProvider>
     </SettingsProvider>
   </React.StrictMode>
 );
