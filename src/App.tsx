@@ -59,8 +59,13 @@ import AssignmentDetail from './screens/AssignmentDetail';
 import Questions from './screens/Question/Questions';
 import QuestionAdd from './screens/QuestionAdd';
 import Notes from './screens/Notes';
-import Note from './screens/Note';
 import AddAssignnment from './screens/AddAssignnment';
+
+
+// React Quill
+import 'react-quill/dist/quill.snow.css';
+import AddNote from './screens/AddNote';
+import SingleNote from './screens/Note/SingleNote';
 
 
 
@@ -115,13 +120,19 @@ const App: React.FC = () => {
           <Notes />
         </Route>
         <Route exact path="/note/:id">
-          <Note />
+          <SingleNote />
+        </Route>
+        <Route exact path="/add/note">
+          <AddNote />
         </Route>
 
         {
           showTabs && (
             <IonTabs>
               <IonRouterOutlet>
+                <Route exact path="/add/note">
+                  <AddNote />
+                </Route>
                 <Route exact path="/add/assignment">
                   <AddAssignnment />
                 </Route>
@@ -162,7 +173,7 @@ const App: React.FC = () => {
                   <Notes />
                 </Route>
                 <Route exact path="/note/:id">
-                  <Note />
+                  <SingleNote />
                 </Route>
               </IonRouterOutlet>
 

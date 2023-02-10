@@ -7,17 +7,18 @@ const { pb } = Settings()
 // POCKETBASE SDKs
 
 
-export async function listCollection(collection: string, batchSize = 200) {
+export async function listCollection(collection: string, batchSize = 200,  relFields?: string) {
     try {
         const records = await pb
             .collection(collection)
             .getFullList(batchSize, {
-                sort: '-created',
+                sort: 'created',
             });
         return records
     }
     catch (error: any) {
         if (error) throw new Error(error);
+        return error
     }
 }
 
@@ -27,19 +28,22 @@ export async function filterCollection(
     filterParams: string,
     min = 1,
     max = 50,
-    cancelKey = 'key',
-    disableCancelkey = false
+    relFields?: string,
+    // cancelKey = 'key',
+    // disableCancelkey = false,
 ) {
     try {
         const filteredResult = await pb.collection(collection).getList(min, max, {
             filter: filterParams,
             // '$cancelKey': disableCancelkey ? disableCancelkey : cancelKey
-            '$autoCancel': false
+            '$autoCancel': false,
+            expand: relFields
         });
         return filteredResult
     }
     catch (error: any) {
         if (error) throw new Error(error)
+        return error
     }
 }
 
@@ -53,6 +57,7 @@ export async function getItem(collection: string, recordId: string, relFields?: 
 
     } catch (error: any) {
         if (error) throw new Error(error)
+        return error
     }
 
 }

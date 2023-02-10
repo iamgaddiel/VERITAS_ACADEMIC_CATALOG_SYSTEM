@@ -2,7 +2,6 @@ import { IonButton, IonCard, IonCardContent, IonContent, IonInput, IonItem, IonL
 import { useContext, useEffect, useState } from 'react'
 import BackHeader from '../../components/BackHeader'
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { UserCollectionType, StoredUser } from '../../@types/users';
 import { AuthContextType, AuthContext } from '../../contexts/AuthContext';
@@ -169,7 +168,7 @@ const CreateAssignmentByStaff: React.FC<{ staff: UserCollectionType }> = ({ staf
     const [alertMsg, setAlertMsg] = useState('')
     const [showAlert, setShowAlert] = useState(false)
     const [loading, setLoading] = useState(false)
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<StafffAssignmentInputs>();
+    const { register, handleSubmit, formState: { errors } } = useForm<StafffAssignmentInputs>();
     const history = useHistory()
 
 
